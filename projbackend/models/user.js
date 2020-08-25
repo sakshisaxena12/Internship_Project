@@ -69,7 +69,7 @@ userSchema
   });
 
 //since encry_passwd is req field so if thats empty then will return err.
-userSchema.method = {
+userSchema.methods = {
   //this fn will match these hashed values:
   autheticate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password; //if match returns true/false.
@@ -77,7 +77,7 @@ userSchema.method = {
 
   //this fn will be returning taking the plainpassword and returning the secured password.
   securePassword: function (plainpassword) {
-    if (!password) return "";
+    if (!plainpassword) return "";
     try {
       return crypto
         .createHmac("sha256", this.salt)
